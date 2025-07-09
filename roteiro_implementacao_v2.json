@@ -1,0 +1,174 @@
+{
+    "objetivo": "Gerar uma aplicação Java Spring Boot completa, aderente aos princípios DDD e SOLID, pronta para produção",
+    "perfil_modelo": {
+      "linguagem": "Java",
+      "framework": "Spring Boot",
+      "paradigma": "Domain-Driven Design (DDD)",
+      "principios": ["SOLID", "Clean Code"],
+      "papeis": ["Desenvolvedor Backend", "Arquiteto de Software"]
+    },
+    "dominio": "SUBSTITUIR_PELO_DOMINIO_DO_NEGOCIO",
+    "estrutura_projeto": {
+      "tipo": "maven-multi-module",
+      "modulos": ["domain", "application", "infrastructure", "presentation"],
+      "organizacao": "bounded-context",
+      "boundedContexts": ["boleto", "cliente", "pagamento"],
+      "perfis": ["dev", "prod"],
+      "buildTool": "maven"
+    },
+    "dependencias": [
+      "spring-boot-starter-web",
+      "spring-boot-starter-data-jpa",
+      "spring-boot-starter-security",
+      "spring-boot-starter-validation",
+      "spring-boot-starter-test",
+      "com.h2database:h2"
+    ],
+    "camadas": {
+      "domain": {
+        "entidades": "Comportamento e identidade",
+        "valueObjects": "Imutáveis e sem identidade",
+        "aggregates": "Raízes com regras de consistência",
+        "domainServices": "Regras que não pertencem a entidades",
+        "repositories": "Interfaces para abstração de persistência",
+        "domainEvents": "Eventos opcionais para desacoplamento",
+        "specifications": "Regras complexas encapsuladas"
+      },
+      "application": {
+        "useCases": "Coordenação da lógica de negócio",
+        "dtos": "Transferência entre camadas",
+        "mappers": "Transformação entre DTO e domínio",
+        "commandQueryHandlers": "Separação CQRS (opcional)"
+      },
+      "infrastructure": {
+        "repositoryImpls": "Implementações via Spring Data JPA",
+        "jpaEntities": "Mapeamento para persistência",
+        "configurations": "Beans e configurações do Spring",
+        "externalServices": "REST clients, APIs externas",
+        "eventPublishers": "Publicação de eventos de domínio"
+      },
+      "presentation": {
+        "restControllers": "Endpoints RESTful",
+        "requestResponseDTOs": "Contratos da API",
+        "exceptionHandler": "Tratamento global de erros",
+        "beanValidation": "Validação com Bean Validation",
+        "securityConfiguration": "Segurança com Spring Security"
+      }
+    },
+    "principios": {
+      "ddd": [
+        "Bounded Context",
+        "Ubiquitous Language",
+        "Rich Domain Model",
+        "Aggregates",
+        "Repository Pattern",
+        "Domain Events"
+      ],
+      "solid": [
+        "SRP - Single Responsibility Principle",
+        "OCP - Open/Closed Principle",
+        "LSP - Liskov Substitution Principle",
+        "ISP - Interface Segregation Principle",
+        "DIP - Dependency Inversion Principle"
+      ],
+      "designPatterns": [
+        "Repository",
+        "Factory",
+        "Builder",
+        "Strategy",
+        "Observer"
+      ]
+    },
+    "configuracoes_tecnicas": {
+      "application-dev.yml": {
+        "spring": {
+          "datasource": {
+            "url": "jdbc:h2:mem:testdb",
+            "driver-class-name": "org.h2.Driver"
+          },
+          "h2": {
+            "console": {
+              "enabled": true
+            }
+          },
+          "jpa": {
+            "hibernate": {
+              "ddl-auto": "create-drop"
+            },
+            "show-sql": true
+          }
+        }
+      },
+      "seguranca": {
+        "tipo": "Spring Security",
+        "autenticacao": "HTTP Basic (dev)",
+        "protecaoEndpoints": true
+      },
+      "logging": {
+        "logging.level.com.empresa.projeto": "INFO",
+        "logging.level.org.springframework": "INFO",
+        "logging.level.org.hibernate": "WARN"
+      }
+    },
+    "estrutura_resposta_http": {
+      "sucesso": {
+        "status": "success",
+        "data": "objeto retornado",
+        "timestamp": "ISO 8601"
+      },
+      "erro_validacao": {
+        "status": "error",
+        "message": "Validation failed",
+        "errors": [
+          {
+            "field": "campo",
+            "message": "mensagem de erro"
+          }
+        ],
+        "timestamp": "ISO 8601"
+      }
+    },
+    "testes": {
+      "unitarios": [
+        "Entidades, Value Objects e Domain Services",
+        "Application Services",
+        "Controllers com MockMvc"
+      ],
+      "integracao": [
+        "Repositórios com @DataJpaTest",
+        "APIs com @SpringBootTest"
+      ]
+    },
+    "entregaveis": [
+      "Estrutura de projeto completa",
+      "pom.xml principal e por módulo",
+      "Arquivos application.yml para dev e prod",
+      "Código fonte completo",
+      "Testes unitários e de integração",
+      "README.md com instruções",
+      "Dockerfile (opcional)"
+    ],
+    "instrucoes_geracao": {
+      "nomenclatura": {
+        "dominio": "português",
+        "infraestrutura": "inglês"
+      },
+      "documentacao": "Javadoc em classes públicas e métodos complexos",
+      "tratamento_excecoes": "Exceções específicas e tratamento global",
+      "validacao": "Validação rigorosa em DTOs e no domínio",
+      "logging": "Logs estruturados para auditoria",
+      "cleanCode": "Código limpo, legível e coeso"
+    },
+    "exemplo_endpoint": {
+      "descricao": "Criação de boleto bancário",
+      "codigo": "@PostMapping(\"/api/boletos\")\npublic ResponseEntity<BoletoResponse> criarBoleto(@Valid @RequestBody CriarBoletoRequest request) {\n    // Orquestração via Application Service\n}"
+    },
+    "instrucao_final_modelo": [
+      "Gere apenas código funcional e testável",
+      "Código deve estar pronto para produção",
+      "Siga todas as boas práticas definidas",
+      "Não use placeholders ou métodos vazios",
+      "Mantenha consistência semântica e estrutural"
+    ]
+  }
+  

@@ -1,0 +1,114 @@
+{
+    "projectStructure": {
+      "type": "multi-module maven",
+      "modules": ["domain", "application", "infrastructure"],
+      "packageOrganization": "bounded context (ex: boleto)",
+      "profiles": ["dev", "prod"],
+      "dependencies": [
+        "Spring Boot",
+        "Spring Data JPA",
+        "Spring Security",
+        "H2 Database (development only)",
+        "Bean Validation"
+      ],
+      "buildTool": "Maven"
+    },
+    "baseConfigurations": {
+      "springBootStarters": ["web", "data-jpa", "security", "validation"],
+      "database": "H2 in-memory for development",
+      "security": "Basic Spring Security with default user",
+      "logging": {
+        "level": "INFO",
+        "components": ["application", "spring"]
+      },
+      "monitoring": {
+        "enabled": true,
+        "endpoints": ["health"]
+      }
+    },
+    "applicationLayers": {
+      "domain": {
+        "description": "Contain business rules and domain entities (defined in separate prompt)."
+      },
+      "application": {
+        "description": "Orchestrate use cases and application services."
+      },
+      "infrastructure": {
+        "description": "Provide implementations for persistence, external services, and frameworks integration."
+      },
+      "presentation": {
+        "description": "Expose a RESTful API for client interaction."
+      },
+      "crossCuttingConcerns": ["exception handling", "validation", "logging"]
+    },
+    "patternsAndConventions": {
+      "domainDrivenDesign": {
+        "applyPrinciples": true,
+        "elements": [
+          "Bounded Context",
+          "Ubiquitous Language",
+          "Entities and Value Objects",
+          "Aggregates",
+          "Repositories",
+          "Domain Events (optional)"
+        ]
+      },
+      "solidPrinciples": {
+        "applyPrinciples": true,
+        "principles": [
+          "Single Responsibility Principle",
+          "Open/Closed Principle",
+          "Liskov Substitution Principle",
+          "Interface Segregation Principle",
+          "Dependency Inversion Principle"
+        ]
+      },
+      "validation": "Bean Validation for input data",
+      "exceptionHandling": "Global and consistent error responses",
+      "logging": "Standardized for observability and audit"
+    },
+    "advancedConfigurations": {
+      "springDataJpa": true,
+      "transactionManagement": true,
+      "caching": "optional",
+      "security": "Basic authentication for REST endpoints",
+      "testing": {
+        "unitTests": "application services",
+        "integrationTests": "persistence layer"
+      }
+    },
+    "designPatterns": {
+      "repository": true,
+      "builder": "optional for complex objects",
+      "factory": "optional for object creation",
+      "strategy": "optional for pluggable business rules",
+      "observer": "optional for domain event dispatching"
+    },
+    "qualityAndTesting": {
+      "staticCodeAnalysis": "compatible with tools like SonarQube",
+      "unitTests": "Mockito or similar framework",
+      "integrationTests": true,
+      "codeReviewReady": true,
+      "continuousIntegration": "basic setup (e.g., GitHub Actions, GitLab CI)"
+    },
+    "deliverables": {
+      "sourceCode": ["domain", "application", "infrastructure"],
+      "pom": "multi-module structure",
+      "configurationFile": "application.yml or application.properties",
+      "restController": {
+        "endpoint": "POST /api/[resource]",
+        "fields": ["domain-specific fields to be defined separately"]
+      },
+      "validation": {
+        "httpResponses": {
+          "success": 200,
+          "validationError": 400
+        }
+      },
+      "testsIncluded": {
+        "unitTest": true,
+        "globalExceptionHandler": true
+      }
+    }
+  }
+  
