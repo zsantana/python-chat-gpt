@@ -96,9 +96,9 @@ class ChatAssistant:
             self.total_tokens += total_tokens
             self.session_tokens += total_tokens
             
-            # Salvando resulto em arquivos
-            splitter = ArtefatoSplitterSpringBoot()
-            splitter.split(response.choices[0].message.content,)
+            # # Salvando resulto em arquivos
+            # splitter = ArtefatoSplitterSpringBoot()
+            # splitter.split(response.choices[0].message.content,)
             
             return {
                 "content": response.choices[0].message.content,
@@ -194,7 +194,7 @@ def main():
             "Temperatura do modelo",
             min_value=0.0,
             max_value=2.0,
-            value=0.7,
+            value=0.0,
             step=0.1,
             help="Controla a criatividade das respostas (0 = mais focado, 2 = mais criativo)"
         )
